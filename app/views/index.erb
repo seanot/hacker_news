@@ -1,0 +1,22 @@
+ <div class="container">
+
+<form method="POST" action="">
+  <p>Log in or sign in here.</p>
+  <input type="email" name="email" placeholder="Email">
+  <input type="password" name="password" placeholder="Password">
+  <input type="submit">
+</form>
+
+
+
+
+
+
+<div>
+
+  <ol>
+  
+<% @posts.each do |post| %>
+  <li><%= post.title %>  </li>
+<% end %>
+</ol>

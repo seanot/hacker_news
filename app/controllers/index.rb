@@ -2,6 +2,7 @@
 
 get '/' do
   # Look in app/views/index.erb
+  @posts = Post.all
   erb :index
 end
 
@@ -13,12 +14,12 @@ get '/user/:id' do
 
 end
 
-get 'access' do
-  
-end
+
 #POSTS============================================
 
 post '/access' do
+  user = User.find_or_create_by_name(params[:email], params[:password])
+
 
 end
 
