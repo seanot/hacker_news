@@ -6,9 +6,6 @@ get '/' do
   erb :index
 end
 
-get '/post/:id/comments' do
-
-end
 
 get '/user/:id' do
 
@@ -19,7 +16,15 @@ get '/access' do
 end
 
 get '/post' do
-    redirect to('/post/new')
+    erb :new_post
+end
+
+get '/comments/post/:post_id' do
+  @post = Post.find(params[:post_id])
+  p @post# 
+  p "the post id is #{@post.id}"
+  # redirect to("/comments/post/#{@post.id}")
+  erb :comments
 end
 
 #POSTS============================================
@@ -50,11 +55,25 @@ post '/access/create' do
 end
 
 
-post '/submit_post/' do
+post '/submit_post' do
+  current_user
+  post = Post.create(:title => params[:title], :body => params[:body], :user_id => current_user.id)
+  redirect to('/')
 end
 
-post 'submit_comment/' do
+# post '/comments/post_id' do
+#   @post = Post.find(params[:post_id])
+#   # redirect to('/comments/post/#{@post.id}')
+#   erb
+# end
 
+
+post '/submit_comment/:post_id' do
+  current_user
+  @post = Post.find(params[:post_id])
+  comment = Comment.create(:content => params[:content], :user_id => current_user.id, :post_id => params[:post_id])
+  
+  erb :comments
 end
 
 

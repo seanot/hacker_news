@@ -1,13 +1,12 @@
  <div class="container">
 
-<% if current_user %>
-  <form action = '/post' method='GET'>
-    <input type='submit' value = 'Submit Post'>
-  </form>
-  <% else %>
-<a href='/access'>Log in or Create account here.</a>
+ <% if current_user %>
+    <form action = '/post' method='GET'> 
+      <input type='submit' value = 'Submit Post'> 
+    </form> 
+  <% else %> 
+    <a href='/access'>Log in or Create account here.</a>
   <% end %>
-
 
 
 
@@ -16,6 +15,7 @@
   <ol>
   
 <% @posts.each do |post| %>
-  <li><%= post.title %>  </li>
+  <li><a href="http://<%=post.body %>"><%=post.title%></a>
+    <a href="/comments/post/<%=post.id%>">Comments</a></li>
 <% end %>
 </ol>
