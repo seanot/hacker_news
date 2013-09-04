@@ -23,6 +23,8 @@ end
 
 post '/access/login' do
   if User.authenticate(params[:user])
+    user = User.find_by_email(params[:user][:email])
+    p user
     redirect to('/')
   else
     redirect to('/')
