@@ -1,8 +1,12 @@
  <div class="container">
 
-
+<% if current_user %>
+  <form action = '/post' method='GET'>
+    <input type='submit' value = 'Submit Post'>
+  </form>
+  <% else %>
 <a href='/access'>Log in or Create account here.</a>
-
+  <% end %>
 
 
 

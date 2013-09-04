@@ -15,8 +15,11 @@ get '/user/:id' do
 end
 
 get '/access' do
-
   erb :access
+end
+
+get '/post' do
+    redirect to('/post/new')
 end
 
 #POSTS============================================
