@@ -22,8 +22,12 @@ end
 #POSTS============================================
 
 post '/access/login' do
-  user = User.find_by_name(params[:email])
-  
+  if User.authenticate(params[:user])
+    redirect to('/')
+  else
+    redirect to('/')
+  end
+
 end
 
 post '/access/create' do
