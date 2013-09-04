@@ -14,14 +14,22 @@ get '/user/:id' do
 
 end
 
+get '/access' do
+
+  erb :access
+end
 
 #POSTS============================================
 
-post '/access' do
-  user = User.find_or_create_by_name(params[:email], params[:password])
-
-
+post '/access/login' do
+  user = User.find_by_name(params[:email])
+  
 end
+
+post '/access/create' do
+  user = User.find_or_create_by_name(params[:email], params[:password])
+end
+
 
 post '/submit_post/' do
 end
