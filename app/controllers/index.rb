@@ -25,15 +25,25 @@ post '/access/login' do
   if User.authenticate(params[:user])
     user = User.find_by_email(params[:user][:email])
     p user
+    session[:user] = user.id
+    puts "this is the session variable #{session[:user]}"
     redirect to('/')
   else
     redirect to('/')
   end
-
 end
 
 post '/access/create' do
-  user = User.find_or_create_by_name(params[:email], params[:password])
+  user = User.new(:email => params[:email], :password => params[:password])
+  if user.save
+    session[:user] = user.id
+    puts "this is the session variable #{session[:user]}"
+    @msg = "Thanks for signing up #{user.email}!"
+    redirect to('/')
+  else
+    @errors = user.errors.full_messages
+    erb :access
+  end
 end
 
 
